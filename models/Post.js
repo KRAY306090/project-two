@@ -17,6 +17,10 @@ Post.init(
         type: DataTypes.STRING,
         allowNull: false
       },
+      ingredients: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
       post_text: {
         type: DataTypes.TEXT,
         allowNull: false,
