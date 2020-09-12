@@ -70,7 +70,7 @@ router.get('/', (req, res) => {
       ingredients: req.body.ingredients,
       post_text: req.body.post_text,
       category: req.body.category,
-      user_id: req.session.user_id
+      user_id: req.body.user_id
     })
       .then(dbPostData => res.json(dbPostData))
       .catch(err => {

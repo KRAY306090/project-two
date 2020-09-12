@@ -1,0 +1,9 @@
+<div class="container">
+        <ul>
+            {{#each posts as |post|}}
+            <li>
+                {{> post-info post }}
+            </li>
+            {{/each}}
+        </ul>
+    </div>
