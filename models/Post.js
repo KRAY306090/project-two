@@ -18,7 +18,7 @@ Post.init(
         allowNull: false
       },
       ingredients: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: false
       },
       post_text: {
@@ -27,6 +27,10 @@ Post.init(
         validate: {
           len:[1]
         }
+      },
+      category: {
+        type: DataTypes.STRING,
+        allowNull: false
       },
       user_id: {
         type: DataTypes.INTEGER,

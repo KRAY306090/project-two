@@ -23,13 +23,15 @@ async function postRecipeHandler(event) {
     const stringed = ingredientArr.join(", ");
     const title = document.querySelector('#name').value.trim();
     const instructions = document.querySelector('#instructions').value.trim();
+    const category = document.querySelector('#category').value.trim();
 
     const response = await fetch('/api/posts', {
         method: 'POST',
         body: JSON.stringify({
             title,
             stringed,
-            instructions
+            instructions,
+            category
         }),
         headers: {
             'Content-Type': 'application/json'
