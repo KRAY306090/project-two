@@ -19,7 +19,7 @@ function addIngredientHandler(event) {
 async function postRecipeHandler(event) {
     event.preventDefault();
 
-    // takes array of ingredients and turns it into string
+    // takes array of ingredients and turns it into string so it can be stored in database
     const stringed = ingredientArr.join(", ");
     const title = document.querySelector('#name').value.trim();
     const instructions = document.querySelector('#instructions').value.trim();
