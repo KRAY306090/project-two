@@ -1,0 +1,53 @@
+<div class="container bg-primary mt-3">
+        <h2 class="pt-3">Add a New Recipe: </h2>
+        <form class="p-3" >
+            <div class="form-group row">
+                <label for="name">Recipe Name:</label>
+                <input type="text" class="form-control" id="name" />
+            </div>
+            <div class="row">
+                <div class="form-group col-2">
+                    <label for="measurement-value">Value:</label>
+                    <input type="text" class="form-control" id="measurement" />
+                </div>
+                <div class="form-group col-2">
+                    <label for="measurement-unit">Unit:</label>
+                    <select name="cars" class="form-control" id="unit">
+                        <option value="cups">cups</option>
+                        <option value="tsps">tsp.</option>
+                        <option value="tbsp">Tbsp.</option>
+                        <option value="ounces">ounces</option>
+                    </select>
+                </div>
+                <div class="form-group col-6">
+                    <label for="ingredient">Ingredient name:</label>
+                    <input type="text" class="form-control" id="ingredient-name" />
+                </div>
+                <div class="col-2">
+                    <button type="button" class="btn btn-light mt-4" id="add-ingredient">Add Ingredient</button>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="category">Category:</label>
+                <select name="category" class="form-control" id="category">
+                    <option value="entree">Entree</option>
+                    <option value="dinner">Dinner</option>
+                    <option value="drink">Drink</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <div class="form-group row">
+                <label for="exampleFormControlTextarea1">Instructions</label>
+                <textarea class="form-control" id="instructions" rows="3"></textarea>
+            </div>
+            <div class="form-group row">
+                <button type="button" class="btn btn-light" id="submit">Post New Recipe!</button>
+            </div>
+        </form>
+    </div>
+    <div>
+        <ul>
+
+        </ul>
+    </div>
+    <script src="/javascript/new-recipe.js"></script>

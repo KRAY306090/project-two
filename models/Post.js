@@ -17,12 +17,20 @@ Post.init(
         type: DataTypes.STRING,
         allowNull: false
       },
+      ingredients: {
+        type: DataTypes.TEXT,
+        allowNull: false
+      },
       post_text: {
         type: DataTypes.TEXT,
         allowNull: false,
         validate: {
           len:[1]
         }
+      },
+      category: {
+        type: DataTypes.STRING,
+        allowNull: false
       },
       user_id: {
         type: DataTypes.INTEGER,
