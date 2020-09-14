@@ -34,6 +34,17 @@ app.use(session(sess));
 app.use(passport.initialize());
 app.use(passport.session());
 
+// google oauth
+app.get('/auth/google',
+  passport.authenticate('google', { scope: ['profile'] }));
+
+  app.get('/auth/google/recipe', 
+  passport.authenticate('google', { failureRedirect: '/login' }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    res.redirect('/');
+  });
+
 app.use(routes);
 
 sequelize.sync({ force: false }).then(() => {

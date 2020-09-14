@@ -3,6 +3,7 @@ const { User, Post, Comment } = require("../../models");
 const passportAuth = require("../../utils/auth");
 const passport = require("../../utils/passport");
 const LocalStrategy = require("passport-local").Strategy;
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
 
 // GET /api/users
 router.get("/", (req, res) => {
@@ -16,6 +17,7 @@ router.get("/", (req, res) => {
       res.status(500).json(err);
     });
 });
+
 
 // GET /api/users/1
 router.get("/:id", (req, res) => {
