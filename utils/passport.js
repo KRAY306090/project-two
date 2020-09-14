@@ -1,6 +1,7 @@
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const { User } = require("../models");
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
 
 passport.use(
   new LocalStrategy(
@@ -41,5 +42,20 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser((user, done) => {
     done(null, user);
 });
+
+// Google OAuth
+passport.use(new GoogleStrategy({
+  clientID: process.env.CLIENT_ID,
+  clientSecret: process.env.CLIENT_SECRET,
+  callbackURL: 'http://localhost:3001/auth/google/callback',
+  userProfileURL: 'https://www.googleapis.com/oauth2/v3/userinfo',
+},
+function(accessToken, refreshToken, profile, cb) {
+  console.log(profile);
+  User.findOrCreate({where: { googleId: profile.id } , defaults: {username: profile.displayName}}).then(user => cb(null, user)).catch(err => cb(err, null))
+}
+));
+
+
 
 module.exports = passport;
