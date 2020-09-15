@@ -41,6 +41,10 @@ User.init(
       type: DataTypes.STRING,
       allowNull: true
     },
+    facebookId: {
+      type: DataTypes.STRING,
+      allowNull: true
+    }
   },
   {
     hooks: {
