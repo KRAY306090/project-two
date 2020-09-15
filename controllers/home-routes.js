@@ -65,4 +65,10 @@ router.get('/', (req, res) => {
     res.render('signup')
   });
 
+    // new recipe route
+
+    router.get('/new-recipe', (req, res) => {
+        res.render('new-recipe')
+      });
+
 module.exports = router;
