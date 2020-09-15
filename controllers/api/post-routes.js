@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const { Post, User, Comment } = require('../../models');
-// const withAuth = require('../../utils/auth');
+const { Post, User, Vote, Comment } = require('../../models');
+const passportAuth = require("../../utils/auth");
 
 // get all users
 router.get('/', (req, res) => {
@@ -63,8 +63,7 @@ router.get('/', (req, res) => {
       });
   });
 
-   router.post('/', /*withAuth,*/ (req, res) => {
-    // expects {title: 'Taskmaster goes public!', post_text: 'https://taskmaster.com/press', user_id: 1}
+   router.post('/', passportAuth, (req, res) => {
     Post.create({
       title: req.body.title,
       ingredients: req.body.ingredients,
@@ -79,7 +78,7 @@ router.get('/', (req, res) => {
       });
   });
 
-  router.put('/:id', /*withAuth,*/  (req, res) => {
+  router.put('/:id', passportAuth,  (req, res) => {
     Post.update(
       {
         title: req.body.title,
@@ -104,7 +103,21 @@ router.get('/', (req, res) => {
       });
   });
 
-  router.delete('/:id', /*withAuth,*/  (req, res) => {
+  // PUT /api/posts/upvote
+router.put('/upvote', passportAuth, (req, res) => {
+  // make sure the session exists first
+  if (req.session) {
+      // pass session id along with all destructured properties on req.body
+      Post.upvote({ ...req.body, user_id: req.session.user_id }, { Vote, Comment, User })
+          .then(updatedVoteData => res.json(updatedVoteData))
+          .catch(err => {
+              console.log(err);
+              res.status(500).json(err);
+          });
+  }
+});
+
+  router.delete('/:id', passportAuth,  (req, res) => {
     Post.destroy({
       where: {
         id: req.params.id
