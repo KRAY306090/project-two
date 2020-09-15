@@ -2,7 +2,10 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const { User } = require("../models");
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const FacebookStrategy = require('passport-facebook').Strategy;
 
+
+// Passport local strategy login
 passport.use(
   new LocalStrategy(
     {
