@@ -86,7 +86,7 @@ router.post("/logout", (req, res) => {
 // PUT /api/users/1
 router.put(
   "/:id",
-  /*withAuth,*/ (req, res) => {
+  passportAuth, (req, res) => {
     User.update(req.body, {
       // checks to make sure password updated or not
       individualHooks: true,
@@ -111,7 +111,7 @@ router.put(
 // DELETE /api/users/1
 router.delete(
   "/:id",
-  /*withAuth,*/ (req, res) => {
+  passportAuth, (req, res) => {
     User.destroy({
       where: {
         id: req.params.id,

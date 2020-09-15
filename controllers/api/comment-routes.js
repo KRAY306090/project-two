@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { Comment } = require('../../models');
-// const withAuth = require('../../utils/auth');
+const passportAuth = require("../../utils/auth");
 
 // get route to find all comments
 router.get('/', (req, res) => {
@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
       });
 });
 
-router.post('/', /*withAuth,*/ (req, res) => {
+router.post('/', passportAuth, (req, res) => {
     // check the session
     if (req.session) {
       Comment.create({
@@ -32,7 +32,7 @@ router.post('/', /*withAuth,*/ (req, res) => {
   });
 
 // delete route to destroy the information
-router.delete('/:id', withAuth, (req, res) => {
+router.delete('/:id', passportAuth, (req, res) => {
   Comment.destroy({
       where: {
           id: req.params.id
