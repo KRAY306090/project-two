@@ -56,6 +56,11 @@ router.get('/', (req, res) => {
     });
 });
 
+// route for first time or logged out visitor
+router.get('/enter', function(req, res){
+  res.render('enter');
+});
+
 // route for login / signup
 
   // login route
