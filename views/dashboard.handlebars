@@ -1,9 +1,14 @@
+  <div>
+    <h2>Your Dashboard</h2>
+    <button type="submit"><a href="/new-recipe" class="btn">Create New Recipe</button>
+  </div>
+
 <div class="container">
         <ul>
-            {{#user posts as |post|}}
+            {{#each posts as |post|}}
             <li>
                 {{> post-info post }}
             </li>
-            {{/user}}
+            {{/each}}
         </ul>
     </div>
