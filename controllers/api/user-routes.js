@@ -4,6 +4,7 @@ const passportAuth = require("../../utils/auth");
 const passport = require("../../utils/passport");
 const LocalStrategy = require("passport-local").Strategy;
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const FacebookStrategy = require('passport-facebook').Strategy;
 
 // GET /api/users
 router.get("/", (req, res) => {
