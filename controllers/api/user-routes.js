@@ -4,6 +4,7 @@ const passportAuth = require("../../utils/auth");
 const passport = require("../../utils/passport");
 const LocalStrategy = require("passport-local").Strategy;
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const FacebookStrategy = require('passport-facebook').Strategy;
 
 // GET /api/users
 router.get("/", (req, res) => {
@@ -68,17 +69,17 @@ router.post("/", (req, res) => {
     email: req.body.email,
     password: req.body.password,
   }).then((dbUserData) => {
-    res.redirect("/login");
+    res.redirect('/login');
   });
 });
 
 // route for the login
-router.post("/login", passport.authenticate("local"), function (req, res) {
-  res.render("homepage", { loggedIn: req.session.passport.user.id });
+router.post('/login', passport.authenticate("local"), function (req, res) {
+  res.render('homepage', { loggedIn: req.session.passport.user.id });
 });
 
 //logout
-router.post("/logout", (req, res) => {
+router.post("/logout", function(req, res) {
   req.logout();
   res.redirect("/");
 });
