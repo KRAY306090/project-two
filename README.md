@@ -1,4 +1,4 @@
-# Recipe eBook
+# Bone Apple Teeth
 
 *A recipe eBook that will fufill all your cravings.*
 
@@ -6,7 +6,7 @@
 
 *A group of individuals learning together, while making your tastebud dreams come true.*
 
-***[The Recipe eBook!](https://github.com/KRAY306090/project-two)***
+***[Bone Apple Teeth!](https://github.com/KRAY306090/project-two)***
 
 ## Table of Contents
 * [Summary](#summary)
@@ -24,7 +24,8 @@ An online recipe eBook that allows you to view different categories ranging from
 ## Technologies
 
 * Mysql
-* Node
+* Node.js
+* Passport.js
 * CSS / Bootstrap
 * JavaScript
 * GitHub
