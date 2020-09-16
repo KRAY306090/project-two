@@ -1,21 +1,13 @@
-{{!-- <div class="card">
-    <div class="card-header">{{title}}</div>
-    <div class="card-body">
-        <ul>
-            <li class="card-text">{{ingredients}}</li>
-        </ul>
-        <p class="card-text">{{post_text}}</p>
-    </div>
-</div> --}}
-
-
 <div class="card-body">
     <h4 class="card-title">{{title}}</h4>
     <ul>
-        <li class="card-text">{{ingredients}}</li>
+        {{#each ingredients as |ingredient|}}
+        <li class="card-text">{{ingredient}}</li>
+        {{/each}}
     </ul>
     <p class="card-text">{{post_text}}</p>
-    {{!-- <a href="#" class="card-link">Card link</a>
-    <a href="#" class="card-link">Another link</a> --}}
-    <p>Created by {{user.username}}</p>
+    <p class="text-right">Created by {{user.username}}</p>
 </div>
+<script>
+    arrayMaker({{ingredients}});
+</script>
