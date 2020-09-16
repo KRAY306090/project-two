@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Post } = require("../models/");
+const { user,Post } = require("../models/");
 const passportAuth = require("../utils/auth");
 
 
