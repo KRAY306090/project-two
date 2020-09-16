@@ -70,7 +70,7 @@ router.get('/enter', function(req, res){
         return;
     }
   
-    res.render('/login');
+    res.render('login');
   });
 
   // signup route
