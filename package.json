@@ -1,7 +1,7 @@
 {
-  "name": "project-two",
+  "name": "pass",
   "version": "1.0.0",
-  "description": "",
+  "description": "## recipe post format for Insomnia {     \"title\": \"Grandma's Cookies\",     \"ingredients\": \"flour, sugar, love\",     \"post_text\": \"1,2,3,4,5...\",     \"category\": \"Dessert\",     \"user_id\": 3 }",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -33,5 +33,6 @@
     "passport-local": "^1.0.0",
     "sequelize": "^6.3.5"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "keywords": []
 }
