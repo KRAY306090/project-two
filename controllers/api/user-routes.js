@@ -74,11 +74,11 @@ router.post("/", (req, res) => {
 
 // route for the login
 router.post("/login", passport.authenticate("local"), function (req, res) {
-  res.render("homepage", { loggedIn: req.session.passport.user.id });
+  res.render("/", { loggedIn: req.session.passport.user.id });
 });
 
 //logout
-router.post("/logout", (req, res) => {
+router.post("/logout", function(req, res) {
   req.logout();
   res.redirect("/");
 });
