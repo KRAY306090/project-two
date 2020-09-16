@@ -10,16 +10,12 @@
 
 ## Table of Contents
 * [Summary](#summary)
-* [Video](#video)
 * [Technologies](#technologies)
 
 ## 
 
 An online recipe eBook that allows you to view different categories ranging from cocktails, entrees, and mouth water desserts. With this eBook it will give you the functionality to search top recipes from viewers like you. 
 
-## Video
-
-***[View the eBook]()***
 
 ## Technologies
 
