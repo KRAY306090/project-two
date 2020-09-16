@@ -75,7 +75,7 @@ router.post("/", (req, res) => {
 
 // route for the login
 router.post('/login', passport.authenticate("local"), function (req, res) {
-  res.render('dashboard', { loggedIn: req.session.passport.user.id });
+  res.render('homepage', { loggedIn: req.session.passport.user.id });
 });
 
 //logout
