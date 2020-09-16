@@ -69,13 +69,13 @@ router.post("/", (req, res) => {
     email: req.body.email,
     password: req.body.password,
   }).then((dbUserData) => {
-    res.redirect("/login");
+    res.redirect('/login');
   });
 });
 
 // route for the login
-router.post("/login", passport.authenticate("local"), function (req, res) {
-  res.render("/", { loggedIn: req.session.passport.user.id });
+router.post('/login', passport.authenticate("local"), function (req, res) {
+  res.render('/', { loggedIn: req.session.passport.user.id });
 });
 
 //logout
