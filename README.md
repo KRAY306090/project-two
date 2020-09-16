@@ -1,4 +1,4 @@
-# Bone Apple Teeth
+# Bone Apple Tea
 
 *A recipe cookbook that will fufill all your cravings.*
 
@@ -10,12 +10,12 @@
 
 ## Table of Contents
 * [Summary](#summary)
-* [Video](#video)
 * [Technologies](#technologies)
 
 ## 
 
-An online recipe cookbook that allows you to view different categories ranging from cocktails, entrees, and mouth water desserts. With this eBook it will give you the functionality to search top recipes from viewers like you. 
+
+An online recipe cookbook that allows you to view different categories ranging from cocktails, entrees, and mouth water desserts. With this cookbook it will give you the functionality to search top recipes from viewers like you. 
 
 
 ## Technologies
