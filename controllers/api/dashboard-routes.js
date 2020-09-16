@@ -1,8 +1,9 @@
 const router = require("express").Router();
 const { Post } = require("../models/");
-const withAuth = require("../../utils/auth");
+const passportAuth = require("../utils/auth");
 
-router.get("/", withAuth, (req, res) => {
+
+router.get("/", passportAuth, (req, res) => {
     Post.findAll({
       where: {
         userId: req.session.userId
@@ -22,13 +23,13 @@ router.get("/", withAuth, (req, res) => {
       });
   });
 
-  router.get("/new", withAuth, (req, res) => {
+  router.get("/new", passportAuth, (req, res) => {
     res.render("new-post", {
       layout: "dashboard"
     });
   });
   
-  router.get("/edit/:id", withAuth, (req, res) => {
+  router.get("/edit/:id", passportAuth, (req, res) => {
     Post.findByPk(req.params.id)
       .then(dbPostData => {
         if (dbPostData) {

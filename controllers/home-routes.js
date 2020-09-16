@@ -85,4 +85,9 @@ router.get('/enter', function(req, res){
         res.render('new-recipe')
       });
 
+      router.get('/dashboard', (req, res) => {
+        res.render('dashboard')
+      });
+
+
 module.exports = router;
