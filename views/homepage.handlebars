@@ -1,10 +1,12 @@
 <div class="container mt-3">
-    
+    <div class="row">
         {{#each posts as |post|}}
-        <div class="card bg-info text-white mt-2">
+        <div class="col-lg-4 col-md-6 col-sm-12 ">
+        <div class="card mt-2">
             {{> post-info post }}
         </div>
+        </div>
         {{/each}}
-   
+   </div>
 </div>
 <script src="/javascript/homepage.js"></script>
