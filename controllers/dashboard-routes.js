@@ -10,7 +10,7 @@ router.get('/', passportAuth, (req, res) => {
     where: {
       // use the ID from the session
       //id: req.params.id
-      user_id: req.session.passport.user_id
+      user_id: req.session.passport.user.id
     },
     attributes: [
       'id',
