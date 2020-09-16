@@ -12,10 +12,10 @@
 * [Summary](#summary)
 * [Technologies](#technologies)
 
-## 
+## Summary
 
 
-An online recipe cookbook that allows you to view different categories ranging from cocktails, entrees, and mouth watering desserts. With this cookbook it will give you the functionality to search top recipes from viewers like you. 
+An online recipe cookbook that allows you to view different categories ranging from cocktails, entrees, and mouth watering desserts. With this cookbook it will give you the functionality to search top recipes from viewers like you. Also, you will be able to add your own recipe, once you create a login.
 
 
 ## Technologies
