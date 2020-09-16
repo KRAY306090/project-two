@@ -1,51 +1,94 @@
-const router = require("express").Router();
-const { user,Post } = require("../models/");
-const passportAuth = require("../utils/auth");
+const router = require('express').Router();
+const sequelize = require('../config/connection');
+const { Post, User, Comment } = require('../models');
+const passportAuth = require('../utils/auth');
 
 
-router.get("/", passportAuth, (req, res) => {
-    Post.findAll({
-      where: {
-        userId: req.session.userId
-      }
-    })
-      .then(dbPostData => {
-        const posts = dbPostData.map((post) => post.get({ plain: true }));
-        
-        res.render("all-posts-admin", {
-          layout: "dashboard",
-          posts
-        });
-      })
-      .catch(err => {
-        console.log(err);
-        res.redirect("login");
-      });
-  });
-
-  router.get("/new", passportAuth, (req, res) => {
-    res.render("new-post", {
-      layout: "dashboard"
-    });
-  });
-  
-  router.get("/edit/:id", passportAuth, (req, res) => {
-    Post.findByPk(req.params.id)
-      .then(dbPostData => {
-        if (dbPostData) {
-          const post = dbPostData.get({ plain: true });
-          
-          res.render("edit-post", {
-            layout: "dashboard",
-            post
-          });
-        } else {
-          res.status(404).end();
+router.get('/', passportAuth, (req, res) => {
+  Post.findAll({
+    where: {
+      // use the ID from the session
+      id: req.params.id
+    },
+    attributes: [
+      'id',
+      'post_text',
+      'title',
+      'created_at'
+    ],
+    include: [
+      {
+        model: Comment,
+        attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+        include: {
+          model: User,
+          attributes: ['username']
         }
-      })
-      .catch(err => {
-        res.status(500).json(err);
-      });
-  });
+      },
+      {
+        model: User,
+        attributes: ['username']
+      }
+    ]
+  })
+    .then(dbPostData => {
+      // serialize data before passing to template
+      const posts = dbPostData.map(post => post.get({ plain: true }));
+      let loginStatus;
+      if (typeof req.session.passport != 'undefined') {
+        loginStatus =
+        req.session.passport.user;
+      } else {
+        loginStatus = false;
+      }
+      res.render('dashboard', { posts, loggedIn: true });
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
+  router.get('/edit/:id', passportAuth, (req, res) => {
+    Post.findOne({
+        where: {
+            user_id: req.session.user_id
+        },
+        attributes: [
+            'id',
+            'post_text',
+            'title',
+            'created_at'
+        ],
+        include: [
+            {
+                model: Comment,
+                attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+                include: {
+                    model: User,
+                    attributes: ['username']
+                }
+            },
+            {
+                model: User,
+                attributes: ['username']
+            }
+        ]
+    })
+        .then(dbPostData => {
+          const posts = dbPostData.map(post => post.get({ plain: true }));
+            let loginStatus;
+              if (typeof req.session.passport != 'undefined') {
+                loginStatus = false;
+              }
+              console.log(loginStatus);
+
+            res.render('edit-post', { post, loggedIn: true });
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+})
   
 module.exports = router;
