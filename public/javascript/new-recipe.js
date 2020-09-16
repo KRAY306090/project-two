@@ -38,7 +38,8 @@ async function postRecipeHandler(event) {
         }
     });
     if (response.ok) {
-        document.location.replace('dashboard');
+        //document.location.replace('dashboard');
+        console.log("success");
     }
     else {
         alert(response.statusText);
