@@ -9,7 +9,8 @@ router.get('/', passportAuth, (req, res) => {
   Post.findAll({
     where: {
       // use the ID from the session
-      id: req.params.id
+      //id: req.params.id
+      user_id: req.session.passport.user_id
     },
     attributes: [
       'id',

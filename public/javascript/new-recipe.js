@@ -24,7 +24,8 @@ async function postRecipeHandler(event) {
     const title = document.querySelector('#name').value.trim();
     const post_text = document.querySelector('#instructions').value.trim();
     const category = document.querySelector('#category').value.trim();
-    //const user_id = 1;
+    //const user_id = loginStatus.id;
+    
 
     const response = await fetch('/api/posts', {
         method: 'POST',
