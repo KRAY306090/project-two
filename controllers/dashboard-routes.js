@@ -13,28 +13,22 @@ router.get('/', passportAuth,  (req, res) => {
       user_id: req.session.passport.user.id
     },
     attributes: [
-      'id',
-      'title',
-      'ingredients',
-      'post_text',
-      'category',
-      'user_id',
-      'created_at'
+      'id', 'comment_text', 'post_id', 'user_id', 'created_at'
     ],
-    include: [
-      {
-        model: Comment,
-        attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
-        include: {
-          model: User,
-          attributes: ['username']
-        }
-      },
-      {
-        model: User,
-        attributes: ['username']
-      }
-    ]
+    // include: [
+    //   {
+    //     model: Comment,
+    //     attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+    //     include: {
+    //       model: User,
+    //       attributes: ['username']
+    //     }
+    //   },
+    //   {
+    //     model: User,
+    //     attributes: ['username']
+    //   }
+    // ]
   })
     .then(dbPostData => {
       // serialize data before passing to template
@@ -46,7 +40,7 @@ router.get('/', passportAuth,  (req, res) => {
       } else {
         loginStatus = false;
       }
-      res.render('dashboard', { posts, loggedIn: true });
+      res.render('dashboard', { posts, loginStatus });
     })
     .catch(err => {
       console.log(err);

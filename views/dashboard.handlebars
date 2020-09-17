@@ -10,6 +10,7 @@
     {{#each posts as |post|}}
     <ul>
       <article class="post">
+         {{> post-info post }}
         <div class="title">
           <a href="/post/{{id}}">{{title}}</a><span><strong>Posted by {{user.username}} on
               {{format_date created_at}}</strong></span>

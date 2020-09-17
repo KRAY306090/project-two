@@ -34,7 +34,7 @@ async function postRecipeHandler(event) {
             ingredients,
             post_text,
             category,
-            user_id
+            // user_id
         }),
         headers: {
             'Content-Type': 'application/json'
