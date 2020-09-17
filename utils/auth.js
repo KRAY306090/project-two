@@ -6,3 +6,4 @@ const passportAuth = (req, res, next) => {
 };
 
 module.exports = passportAuth;
+

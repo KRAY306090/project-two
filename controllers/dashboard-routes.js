@@ -5,7 +5,7 @@ const { session } = require('passport');
 const passportAuth = require('../utils/auth');
 
 
-router.get('/', passportAuth, (req, res) => {
+router.get('/', passportAuth,  (req, res) => {
   Post.findAll({
     where: {
       // use the ID from the session
@@ -14,8 +14,11 @@ router.get('/', passportAuth, (req, res) => {
     },
     attributes: [
       'id',
-      'post_text',
       'title',
+      'ingredients',
+      'post_text',
+      'category',
+      'user_id',
       'created_at'
     ],
     include: [
