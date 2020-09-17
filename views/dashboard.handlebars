@@ -3,12 +3,29 @@
     <a class="btn btn-primary btn-lg" href="/new-recipe" role="button">Create New Recipe</a>
   </div>
 
-<div class="container">
-        <ul>
-            {{#each posts as |post|}}
-            <li>
-                {{> post-info post }}
-            </li>
-            {{/each}}
-        </ul>
-    </div>
+
+
+<section>
+  <ol>
+    {{#each posts as |post|}}
+    <ul>
+      <article class="post">
+        <div class="title">
+          <a href="/post/{{id}}">{{title}}</a><span><strong>Posted by {{user.username}} on
+              {{format_date created_at}}</strong></span>
+        </div>
+        <div>
+
+
+        </div>
+      </article>
+      <button type="submit"><a href="/dashboard/edit/{{post.id}}" class="btn">Edit Post</a>
+    </ul>
+    {{/each}}
+
+
+  </ol>
+</section>
+
+
+
