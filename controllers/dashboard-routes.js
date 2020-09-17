@@ -34,7 +34,7 @@ router.get("/", passportAuth, (req, res) => {
       },
     ],
   })
-    .then(dbPostData => {
+    .then((dbPostData) => {
     
       
       let loginStatus;
@@ -43,9 +43,10 @@ router.get("/", passportAuth, (req, res) => {
         console.log("loginStatus", loginStatus);
       } else {
         loginStatus = false;
-
-        const posts = dbPostData.map((post) => post.get({ plain: true }));
       }
+        const posts = dbPostData.map((post) => post.get({ plain: true }));
+        
+      
       res.render("dashboard", {
         posts,
         loggedin: loginStatus,
