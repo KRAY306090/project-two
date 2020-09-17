@@ -40,7 +40,7 @@ router.get('/', passportAuth,  (req, res) => {
       } else {
         loginStatus = false;
       }
-      res.render('dashboard', { posts, loginStatus });
+      res.render('dashboard', { posts, loggedin: loginStatus });
     })
     .catch(err => {
       console.log(err);
