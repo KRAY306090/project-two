@@ -34,14 +34,14 @@ async function postRecipeHandler(event) {
             ingredients,
             post_text,
             category,
-            //user_id
+            // user_id
         }),
         headers: {
             'Content-Type': 'application/json'
         }
     });
     if (response.ok) {
-        //document.location.replace('dashboard');
+        document.location.replace('/dashboard/');
         console.log("success");
     }
     else {
