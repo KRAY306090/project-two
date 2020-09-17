@@ -4,7 +4,8 @@ const { Post, User, Comment } = require("../models");
 const { session } = require("passport");
 const passportAuth = require("../utils/auth");
 
-router.get("/", passportAuth, (req, res) => {
+router.get("/dashboard", passportAuth, (req, res) => {
+  console.log("made it to call");
   Post.findAll({
     where: {
       // use the ID from the session
@@ -45,7 +46,7 @@ router.get("/", passportAuth, (req, res) => {
         loginStatus = false;
       }
         const posts = dbPostData.map((post) => post.get({ plain: true }));
-        
+      console.log(posts);
       
       res.render("dashboard", {
         posts,

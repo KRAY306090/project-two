@@ -56,6 +56,61 @@ router.get("/", (req, res) => {
     });
 });
 
+router.get("/dashboard", (req, res) => {
+  console.log(req.session);
+  Post.findAll({
+    where: {
+      user_id: req.session.passport.user.id
+    },
+    attributes: [
+      "id",
+      "title",
+      "ingredients",
+      "post_text",
+      "category",
+      "user_id",
+      "created_at",
+    ],
+
+    include: [
+      {
+        model: Comment,
+        attributes: ["id", "comment_text", "post_id", "user_id", "created_at"],
+        include: {
+          model: User,
+          attributes: ["username"],
+        },
+      },
+      {
+        model: User,
+        attributes: ["username"],
+      },
+    ],
+  })
+    .then((dbPostData) => {
+      
+
+      let loginStatus;
+      if (typeof req.session.passport != "undefined") {
+        loginStatus = req.session.passport.user;
+        console.log("loginStatus", loginStatus);
+      } else {
+        loginStatus = false;
+      }
+      const posts = dbPostData.map((post) => post.get({ plain: true }));
+
+      res.render("dashboard", {
+        posts,
+        loggedIn: loginStatus,
+      });
+    })
+
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
 // route for first time or logged out visitor
 router.get("/enter", function (req, res) {
   res.render("enter");
@@ -85,9 +140,9 @@ router.get("/new-recipe", (req, res) => {
   res.render("new-recipe");
 });
 
-router.get("/dashboard", (req, res) => {
-  res.render("dashboard");
-});
+// router.get("/dashboard", (req, res) => {
+//   res.render("dashboard");
+// });
 
 router.get("/post/:id", (req, res) => {
   Post.findOne({

@@ -1,7 +1,13 @@
-<div>
-  <h2>Your Dashboard</h2>
-  <a class="btn btn-primary btn-lg" href="/new-recipe" role="button">Create New Recipe</a>
-</div>
-    
+<div class="container mt-3">
+  <div>
+    <h2>Your Dashboard</h2>
+    <a class="btn btn-primary btn-lg" href="/new-recipe" role="button">Create New Recipe</a>
+  </div>
+  {{#each posts as |post|}}
+  <div class="card bg-light mt-3">
+    {{> post-info post }}
+  </div>
+  {{/each}}
 
-            {{> post-info post }}
+</div>
+<script src="/javascript/homepage.js"></script>
