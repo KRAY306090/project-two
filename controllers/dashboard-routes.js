@@ -17,7 +17,6 @@ router.get("/", passportAuth, (req, res) => {
     'ingredients',
     'post_text',
     'category',
-    'user_id',
     'created_at'
   ],
     include: [
@@ -36,13 +35,15 @@ router.get("/", passportAuth, (req, res) => {
     ],
   })
     .then((dbPostData) => {
-      // serialize data before passing to template
-      const posts = dbPostData.map((post) => post.get({ plain: true }));
+    
+      
       let loginStatus;
       if (typeof req.session.passport != "undefined") {
         loginStatus = req.session.passport.user;
       } else {
         loginStatus = false;
+
+        const post = dbPostData.get({ plain: true });
       }
       res.render("dashboard", {
         posts,
