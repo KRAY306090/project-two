@@ -1,35 +1,14 @@
-  <div>
-    <h2>Your Dashboard</h2>
-    <a class="btn btn-primary btn-lg" href="/new-recipe" role="button">Create New Recipe</a>
-  </div>
+<div>
+  <h2>Your Dashboard</h2>
+  <a class="btn btn-primary btn-lg" href="/new-recipe" role="button">Create New Recipe</a>
+</div>
 
-
-{{#if posts.length}}
-<section>
-  <ol>
-    {{#each posts as |post|}}
-    <ul>
-      <article class="post">
-         {{> post-info post }}
-        <div class="title">
-          <a href="/post/{{id}}">{{title}}</a><span><strong>Posted by {{user.username}} on
-              {{format_date created_at}}</strong></span>
-        </div>
-        <div>
-
-
-        </div>
-      </article>
-      <button type="submit"><a href="/dashboard/edit/{{post.id}}" class="btn">Edit Post</a>
-    </ul>
-    {{/each}}
-
-
-  </ol>
-</section>
-
-
-{{/if}}
-
-
-
+<div class="container">
+        <ul>
+            {{#each posts as |post|}}
+            <li>
+                {{> post-info post }}
+            </li>
+            {{/each}}
+        </ul>
+    </div>
