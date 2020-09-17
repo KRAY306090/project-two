@@ -34,16 +34,17 @@ router.get("/", passportAuth, (req, res) => {
       },
     ],
   })
-    .then((dbPostData) => {
+    .then(dbPostData => {
     
       
       let loginStatus;
       if (typeof req.session.passport != "undefined") {
         loginStatus = req.session.passport.user;
+        console.log("loginStatus", loginStatus);
       } else {
         loginStatus = false;
 
-        const post = dbPostData.get({ plain: true });
+        const posts = dbPostData.map((post) => post.get({ plain: true }));
       }
       res.render("dashboard", {
         posts,
