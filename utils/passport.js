@@ -38,12 +38,12 @@ passport.use(
 );
 
 
-passport.serializeUser((user, cb) => {
-    cb(null, user);
+passport.serializeUser((user, done) => {
+  done(null, user);
 });
 
-passport.deserializeUser((obj, cb) => {
-    cb(null, obj);
+passport.deserializeUser((user, done) => {
+  done(null, user);
 });
 
 // Google OAuth
