@@ -6,11 +6,12 @@ const passportAuth = require("../utils/auth");
 
 router.get("/dashboard", passportAuth, (req, res) => {
   console.log("made it to call");
+  console.log(req.session);
   Post.findAll({
     where: {
       // use the ID from the session
       //id: req.params.id
-      user_id: req.session.passport.user.id,
+      user_id: req.session.passport.user
     },
     attributes: [      
     'id',
