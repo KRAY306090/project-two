@@ -5,6 +5,12 @@ module.exports = {
       }
   
       return word;
+    },
+
+    arrayMaker: (string) => {
+      ingredientArray = string.split(", ");
+
+      return ingredientArray;
     }
 
       
