@@ -19,6 +19,7 @@ router.get("/dashboard", passportAuth, (req, res) => {
     'ingredients',
     'post_text',
     'category',
+    "user_id",
     'created_at'
   ],
     include: [
@@ -37,6 +38,7 @@ router.get("/dashboard", passportAuth, (req, res) => {
     ],
   })
     .then((dbPostData) => {
+      console.log(dbPostData);
     
       
       let loginStatus;
@@ -46,8 +48,11 @@ router.get("/dashboard", passportAuth, (req, res) => {
       } else {
         loginStatus = false;
       }
-        const posts = dbPostData.map((post) => post.get({ plain: true }));
-      console.log(posts);
+        const posts = dbPostData.map((post) => {
+          console.log(post);
+         return post.get({ plain: true });
+        })
+      
       
       res.render("dashboard", {
         posts,
