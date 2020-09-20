@@ -6,11 +6,13 @@ const passportAuth = require("../utils/auth");
 router.get('/', passportAuth, (req, res) => {
   console.log("made it to call");
   console.log('user message', req.session.passport.user);
+  const userId = Array.isArray(req.session.passport.user) ? req.session.passport.user[0].id : req.session.passport.user.id;
   Post.findAll({
     where: {
       // use the ID from the session
       //id: req.params.id
-      user_id: req.session.passport.user[0].id
+      user_id: Number(userId)
+    
       
     },
     attributes: [      
