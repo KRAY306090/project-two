@@ -4,8 +4,8 @@ const { Post, User, Comment } = require("../models");
 const passportAuth = require("../utils/auth");
 
 router.get('/', passportAuth, (req, res) => {
-  console.log("made it to call");
-  console.log('user message', req.session.passport.user);
+  // console.log("made it to call");
+  // console.log('user message', req.session.passport.user);
   const userId = Array.isArray(req.session.passport.user) ? req.session.passport.user[0].id : req.session.passport.user.id;
   Post.findAll({
     where: {
@@ -39,7 +39,7 @@ router.get('/', passportAuth, (req, res) => {
     ],
   })
     .then((dbPostData) => {
-      console.log('dbpostdata', dbPostData);
+      // console.log('dbpostdata', dbPostData);
     
       
       let loginStatus;
@@ -50,7 +50,7 @@ router.get('/', passportAuth, (req, res) => {
         loginStatus = false;
       }
         const posts = dbPostData.map((post) => {
-          console.log('post', post);
+          // console.log('post', post);
          return post.get({ plain: true });
         })
       

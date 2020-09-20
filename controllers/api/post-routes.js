@@ -65,7 +65,7 @@ router.get('/', (req, res) => {
 
    router.post('/', passportAuth, (req, res) => {
     const userId = Array.isArray(req.session.passport.user) ? req.session.passport.user[0].id : req.session.passport.user.id;
-    console.log('check this out', userId);
+    // console.log('check this out', userId);
     Post.create({
       title: req.body.title,
       ingredients: req.body.ingredients,
