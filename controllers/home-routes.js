@@ -146,9 +146,9 @@ router.get("/signup", (req, res) => {
 
 // new recipe route
 
-router.get("/new-recipe", (req, res) => {
-  res.render("new-recipe");
-});
+// router.get("/new-recipe", (req, res) => {
+//   res.render("new-recipe");
+// });
 
 // router.get("/dashboard", (req, res) => {
 //   res.render("dashboard");

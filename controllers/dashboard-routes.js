@@ -1,10 +1,9 @@
 const router = require("express").Router();
 const sequelize = require("../config/connection");
 const { Post, User, Comment } = require("../models");
-const { session } = require("passport");
 const passportAuth = require("../utils/auth");
 
-router.get("/", passportAuth, (req, res) => {
+router.get('/', passportAuth, (req, res) => {
   console.log("made it to call");
   console.log(req.session);
   Post.findAll({
@@ -62,6 +61,11 @@ router.get("/", passportAuth, (req, res) => {
       console.log(err);
       res.status(500).json(err);
     });
+});
+
+// new recipe
+router.get("/new-recipe", (req, res) => {
+  res.render("new-recipe");
 });
 
 router.get("/edit/:id", passportAuth, (req, res) => {
