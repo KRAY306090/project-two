@@ -44,7 +44,7 @@ router.get("/", (req, res) => {
         loginStatus = false;
       }
       const posts = dbPostData.map((post) => {
-        console.log(post);
+        // console.log(post);
        return post.get({ plain: true });
       })
 
