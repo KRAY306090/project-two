@@ -27,7 +27,7 @@ async function postRecipeHandler(event) {
     //const user_id = loginStatus.id;
     
 
-    const response = await fetch('/api/posts', {
+    const response = await fetch(`/api/posts`, {
         method: 'POST',
         body: JSON.stringify({
             title,
@@ -41,7 +41,7 @@ async function postRecipeHandler(event) {
         }
     });
     if (response.ok) {
-        document.location.replace('/dashboard');
+        document.location.replace('/dashboard/');
         console.log("success");
     }
     else {
