@@ -2,6 +2,7 @@ const router = require("express").Router();
 const sequelize = require("../config/connection");
 const { Post, User, Comment } = require("../models");
 const { session } = require("passport");
+const passportAuth = require("../utils/auth");
 
 // get all posts for homepage
 router.get("/", (req, res) => {
@@ -56,60 +57,66 @@ router.get("/", (req, res) => {
     });
 });
 
-// router.get("/dashboard", (req, res) => {
-//   console.log(req.session);
-//   Post.findAll({
-//     where: {
-//       user_id: req.session.passport.user.id
-//     },
-//     attributes: [
-//       "id",
-//       "title",
-//       "ingredients",
-//       "post_text",
-//       "category",
-//       "user_id",
-//       "created_at",
-//     ],
-
-//     include: [
-//       {
-//         model: Comment,
-//         attributes: ["id", "comment_text", "post_id", "user_id", "created_at"],
-//         include: {
-//           model: User,
-//           attributes: ["username"],
-//         },
-//       },
-//       {
-//         model: User,
-//         attributes: ["username"],
-//       },
-//     ],
-//   })
-//     .then((dbPostData) => {
+router.get("/dashboard", passportAuth, (req, res) => {
+  console.log("made it to call");
+  console.log(req.session);
+  Post.findAll({
+    where: {
+      // use the ID from the session
+      //id: req.params.id
+      user_id: req.session.passport.user
+    },
+    attributes: [      
+    'id',
+    'title',
+    'ingredients',
+    'post_text',
+    'category',
+    "user_id",
+    'created_at'
+  ],
+    include: [
+      {
+        model: Comment,
+        attributes: ["id", "comment_text", "post_id", "user_id", "created_at"],
+        include: {
+          model: User,
+          attributes: ["username"],
+        },
+      },
+      {
+        model: User,
+        attributes: ["username"],
+      },
+    ],
+  })
+    .then((dbPostData) => {
+      console.log(dbPostData);
+    
       
-
-//       let loginStatus;
-//       if (typeof req.session.passport != "undefined") {
-//         loginStatus = req.session.passport.user;
-//         console.log("loginStatus", loginStatus);
-//       } else {
-//         loginStatus = false;
-//       }
-//       const posts = dbPostData.map((post) => post.get({ plain: true }));
-
-//       res.render("dashboard", {
-//         posts,
-//         loggedIn: loginStatus,
-//       });
-//     })
-
-//     .catch((err) => {
-//       console.log(err);
-//       res.status(500).json(err);
-//     });
-// });
+      let loginStatus;
+      if (typeof req.session.passport != "undefined") {
+        loginStatus = req.session.passport.user;
+        console.log("loginStatus", loginStatus);
+      } else {
+        loginStatus = false;
+      }
+        const posts = dbPostData.map((post) => {
+          console.log(post);
+         return post.get({ plain: true });
+        })
+      
+      
+      res.render("dashboard", {
+        posts,
+        loggedin: loginStatus,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
 
 // route for first time or logged out visitor
 router.get("/enter", function (req, res) {
