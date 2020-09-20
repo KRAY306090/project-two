@@ -64,12 +64,14 @@ router.get('/', (req, res) => {
   });
 
    router.post('/', passportAuth, (req, res) => {
+    const userId = Array.isArray(req.session.passport.user) ? req.session.passport.user[0].id : req.session.passport.user.id;
+    console.log('check this out', userId);
     Post.create({
       title: req.body.title,
       ingredients: req.body.ingredients,
       post_text: req.body.post_text,
       category: req.body.category,
-      user_id: req.session.passport.user.id
+      user_id: Number(userId)
     })
       .then(dbPostData => res.json(dbPostData))
       .catch(err => {

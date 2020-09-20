@@ -11,7 +11,12 @@ module.exports = {
       ingredientArray = string.split(", ");
 
       return ingredientArray;
-    }
 
-      
-  }
+  },
+
+  arrayMaker: (string) => {
+    ingredientArray = string.split(", ");
+
+    return ingredientArray;
+  },
+};

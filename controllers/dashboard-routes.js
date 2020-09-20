@@ -1,16 +1,19 @@
 const router = require("express").Router();
 const sequelize = require("../config/connection");
 const { Post, User, Comment } = require("../models");
-const { session } = require("passport");
 const passportAuth = require("../utils/auth");
 
-router.get("/dashboard", passportAuth, (req, res) => {
+router.get('/', passportAuth, (req, res) => {
   console.log("made it to call");
+  console.log('user message', req.session.passport.user);
+  const userId = Array.isArray(req.session.passport.user) ? req.session.passport.user[0].id : req.session.passport.user.id;
   Post.findAll({
     where: {
       // use the ID from the session
       //id: req.params.id
-      user_id: req.session.passport.user.id,
+      user_id: Number(userId)
+    
+      
     },
     attributes: [      
     'id',
@@ -36,6 +39,7 @@ router.get("/dashboard", passportAuth, (req, res) => {
     ],
   })
     .then((dbPostData) => {
+      console.log('dbpostdata', dbPostData);
     
       
       let loginStatus;
@@ -45,10 +49,13 @@ router.get("/dashboard", passportAuth, (req, res) => {
       } else {
         loginStatus = false;
       }
-        const posts = dbPostData.map((post) => post.get({ plain: true }));
-      console.log(posts);
+        const posts = dbPostData.map((post) => {
+          console.log('post', post);
+         return post.get({ plain: true });
+        })
       
-      res.render("dashboard", {
+      
+      res.render('dashboard', {
         posts,
         loggedin: loginStatus,
       });
@@ -57,6 +64,11 @@ router.get("/dashboard", passportAuth, (req, res) => {
       console.log(err);
       res.status(500).json(err);
     });
+});
+
+// new recipe
+router.get("/new-recipe", (req, res) => {
+  res.render("new-recipe");
 });
 
 router.get("/edit/:id", passportAuth, (req, res) => {
