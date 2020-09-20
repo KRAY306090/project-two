@@ -4,7 +4,7 @@ const { Post, User, Comment } = require("../models");
 const { session } = require("passport");
 const passportAuth = require("../utils/auth");
 
-router.get("/dashboard", passportAuth, (req, res) => {
+router.get("/", passportAuth, (req, res) => {
   console.log("made it to call");
   console.log(req.session);
   Post.findAll({
@@ -19,7 +19,6 @@ router.get("/dashboard", passportAuth, (req, res) => {
     'ingredients',
     'post_text',
     'category',
-    "user_id",
     'created_at'
   ],
     include: [
@@ -54,7 +53,7 @@ router.get("/dashboard", passportAuth, (req, res) => {
         })
       
       
-      res.render("dashboard", {
+      res.render('dashboard', {
         posts,
         loggedin: loginStatus,
       });
