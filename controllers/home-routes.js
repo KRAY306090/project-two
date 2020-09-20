@@ -43,7 +43,10 @@ router.get("/", (req, res) => {
       } else {
         loginStatus = false;
       }
-      const posts = dbPostData.map((post) => post.get({ plain: true }));
+      const posts = dbPostData.map((post) => {
+        console.log(post);
+       return post.get({ plain: true });
+      })
 
       res.render("homepage", {
         posts,
