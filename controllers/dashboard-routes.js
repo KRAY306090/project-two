@@ -5,12 +5,13 @@ const passportAuth = require("../utils/auth");
 
 router.get('/', passportAuth, (req, res) => {
   console.log("made it to call");
-  console.log(req.session);
+  console.log('user message', req.session.passport.user);
   Post.findAll({
     where: {
       // use the ID from the session
       //id: req.params.id
-      user_id: req.session.passport.user
+      user_id: req.session.passport.user[0].id
+      
     },
     attributes: [      
     'id',
@@ -36,7 +37,7 @@ router.get('/', passportAuth, (req, res) => {
     ],
   })
     .then((dbPostData) => {
-      console.log(dbPostData);
+      console.log('dbpostdata', dbPostData);
     
       
       let loginStatus;
@@ -47,7 +48,7 @@ router.get('/', passportAuth, (req, res) => {
         loginStatus = false;
       }
         const posts = dbPostData.map((post) => {
-          console.log(post);
+          console.log('post', post);
          return post.get({ plain: true });
         })
       
