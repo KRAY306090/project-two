@@ -1,0 +1,9 @@
+.dashboard {
+    background: url("../img/dashboardimg.jpeg") no-repeat center center fixed;
+    background-size: cover;
+}
+
+.enter {
+    background: url("../img/loginimg.jpeg") no-repeat center center fixed;
+    background-size: cover;
+}

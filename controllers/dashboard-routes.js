@@ -8,6 +8,7 @@ router.get('/', passportAuth, (req, res) => {
   // console.log('user message', req.session.passport.user);
   const userId = Array.isArray(req.session.passport.user) ? req.session.passport.user[0].id : req.session.passport.user.id;
   Post.findAll({
+    style: 'dashboard.css',
     where: {
       // use the ID from the session
       //id: req.params.id

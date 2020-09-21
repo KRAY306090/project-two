@@ -10,6 +10,8 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
   <link rel="stylesheet" href="styles/bootstrap-social.css">
+  <link rel="stylesheet" href="styles/dashboard.css">
+  {{!-- <link rel="stylesheet" href="styles/style.css"> --}}
 </head>
 
 <body>
@@ -39,6 +41,28 @@
   {{#if loggedIn}}
   <script src="/javascript/logout.js"></script>
   {{/if}}
+
+  <p>
+      {{style}}
+      {{styles}}
+  </p>
+
+  <script>
+      
+
+      function changeBackGround(){
+          let href= location.href;
+          if (href.includes('dashboard')){
+              document.body.setAttribute('class','dashboard')
+              console.log('here')
+          }else if (href.includes('post')) {
+              document.body.setAttribute('class', 'post');
+          }
+      }
+      changeBackGround()
+  </script>
 </body>
+
+
 
 </html>
