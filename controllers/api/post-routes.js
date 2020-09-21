@@ -63,6 +63,41 @@ router.get('/', (req, res) => {
       });
   });
 
+  // find by catergory route
+  router.get('/:category', (req, res) => {
+    Post.findAll({
+      where: {
+        category: req.params.category
+      },
+      attributes: ['id', 'title', 'ingredients', 'post_text', 'category', 'created_at'],
+      include: [
+        {
+          model: Comment,
+          attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+          include: {
+            model: User,
+            attributes: ['username']
+          }
+        },
+        {
+          model: User,
+          attributes: ['username']
+        }
+      ]
+    })
+      .then(dbPostData => {
+        if (!dbPostData) {
+          res.status(404).json({ message: 'No post found with this category' });
+          return;
+        }
+        res.json(dbPostData);
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+  });
+
    router.post('/', passportAuth, (req, res) => {
     Post.create({
       title: req.body.title,

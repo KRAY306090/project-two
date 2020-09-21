@@ -1,10 +1,19 @@
 <div class="container mt-3">
-    
-        {{#each posts as |post|}}
-        <div class="card bg-light mt-3">
-            {{> post-info post }}
-        </div>
-        {{/each}}
-   
+    <div class="my-3">
+        <select name="category" class="form-control" id="category">
+            <option value="entree">Entree</option>
+            <option value="dessert">Dessert</option>
+            <option value="drink">Drink</option>
+            <option value="other">Other</option>
+        </select>
+        <button class="btn btn-secondary" id="catButton">Search by Category</button>
+    </div>
+
+    {{#each posts as |post|}}
+    <div class="card bg-light mt-3">
+        {{> post-info post }}
+    </div>
+    {{/each}}
+
 </div>
 <script src="/javascript/homepage.js"></script>
