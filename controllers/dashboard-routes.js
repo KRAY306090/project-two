@@ -7,6 +7,7 @@ const passportAuth = require("../utils/auth");
 router.get("/dashboard", passportAuth, (req, res) => {
   console.log("made it to call");
   Post.findAll({
+    style: 'dashboard.css',
     where: {
       // use the ID from the session
       //id: req.params.id
