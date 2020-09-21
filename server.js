@@ -23,7 +23,7 @@ const sess = {
   saveUninitialized: true,
   store: new SequelizeStore({
     db: sequelize,
-  }),
+  })
 };
 
 app.use(express.static('public'));
