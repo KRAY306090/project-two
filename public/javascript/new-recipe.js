@@ -5,6 +5,7 @@ const ingredientArr = [];
 function addIngredientHandler(event) {
     event.preventDefault();
 
+    const ingredientList = document.querySelector('#ing-list');
     const measurement = document.querySelector('#measurement').value.trim();
     const unit = document.querySelector('#unit').value.trim();
     const ingredientName = document.querySelector('#ingredient-name').value.trim();
@@ -13,6 +14,10 @@ function addIngredientHandler(event) {
 
     ingredientArr.push(newIngredient);
     console.log(ingredientArr);
+    const li = document.createElement('li');
+    li.innerHTML = newIngredient;
+    ingredientList.appendChild(li);
+
 }
 
 // function posts new recipe to database
